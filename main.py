@@ -23,7 +23,7 @@ class Follow_Bot:
             else:
                 self.failed += 1             
 
-            print(f" [\x1b[1;32m+\x1b[1;37m] target: ({self.target}) | followed: ({self.followed}) | failed: ({self.failed})", end='\r', flush=True)
+            print(f" [\x1b[1;32m+\x1b[1;37m] Username: ({self.target}) | followed: ({self.followed}) | failed: ({self.failed})", end='\r', flush=True)
         await session.close()   
  
 
@@ -36,20 +36,20 @@ class Follow_Bot:
     async def initialise(self) -> None:
         system('cls' if platform == 'win32' else 'clear')
         init(autoreset=True)
-        print(' [\x1b[1;32m*\x1b[39m] slya\'s xbox follower bot')
+        print(' [\x1b[1;32m*\x1b[39m] CNC\'s xbox follower bot')
 
         if len(open('tokens/tokens.txt', 'r').readlines()) > 0:
             print(f" [\x1b[1;32m*\x1b[39m] Tokens: ({len(open('tokens/tokens.txt', 'r').readlines())}) \n")
         else:
             print(' [\x1b[1;31m!\x1b[39m] no tokens found in \'\x1b[1;33mtokens/tokens.txt\x1b[39m\'');_exit(0)
 
-        self.target = input(' [\x1b[1;32m?\x1b[39m] target: ');print('')
+        self.target = input(' [\x1b[1;32m?\x1b[39m] Username: ');print('')
         await self.start()
 
 
     async def start(self):
         await asyncio.gather(*[self.follow_target(user) for user in self.users])
-        print(f" [\x1b[1;32m+\x1b[1;37m] target: ({self.target}) | followed: ({self.followed}) | failed: ({self.failed})", flush=True)
+        print(f" [\x1b[1;32m+\x1b[1;37m] Username: ({self.target}) | followed: ({self.followed}) | failed: ({self.failed})", flush=True)
 
 
 if __name__ == "__main__":
